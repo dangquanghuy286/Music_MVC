@@ -38,3 +38,31 @@ export const listSong = async (req: Request, res: Response) => {
     songs: songsWithSinger,
   });
 };
+// [GET]/songs/detail/:slug
+export const detailSong = async (req: Request, res: Response) => {
+  try {
+    const slugSong = req.params.slug;
+    const song = await Song.findOne({ slug: slugSong });
+    if (!song) {
+      return res.redirect("/topics");
+    }
+
+    const infoSinger = await Singer.findOne({
+      _id: song.singerId,
+      deleted: false,
+    }).select("fullName");
+
+    const topicName = await Topic.findOne({ _id: song.topicId }).select(
+      "description slug"
+    );
+    res.render("client/pages/songs/detail", {
+      title: song.title,
+      song: song,
+      infoSinger: infoSinger,
+      topicName: topicName,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/topics");
+  }
+};

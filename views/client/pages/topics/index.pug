@@ -1,16 +1,13 @@
 extends ../../layouts/default.pug
 block content
     .container.my-3 
-        .row 
-            .col-12 
-                .box-head 
-                    h2.inner-title Chủ đề bài hát
-        .row
+        .box-head 
+            h2.inner-title Chủ đề bài hát
+        .grid-container
             each topic in topics
-                .col-6.mb-3
-                div(class="card")
+                .card
                     img(src=topic.avatar)
-                    div(class="card-body")
-                    h5(class="card-title") #{topic.title}
-                    p(class="card-text") #{topic.description}
-                    a(href="/songs/:slug" class="btn btn-primary") Xem chi tiết
+                    .card-body
+                        h5.card-title #{topic.title}
+                        p.card-text #{topic.description}
+                        a(href=`/songs/list/${topic.slug}` class="btn btn-primary") Xem chi tiết

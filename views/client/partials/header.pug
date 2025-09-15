@@ -5,25 +5,32 @@ header.header
                 a(href="/")
                     img(src="/images/logo.png" alt="MusicApp Logo" class="logo")
             .col-md-6
-                .inner-menu
-                    ul(class="nav justify-content-center")
-                        li.nav-item
-                            a.nav-link(href="/") Home
-                        li.nav-item
-                            a.nav-link(href="/browse") Browse
-                        li.nav-item
-                            a.nav-link(href="/playlists") Playlists
-                        li.nav-item
-                            a.nav-link(href="/about") About
-                //- form(action="/search" method="GET" class="d-flex")
-                //-     input(type="text" name="q" class="form-control me-2" placeholder="Search for songs, artists..." required)
-                //-     button(type="submit" class="btn btn-outline-success") Search
+                .d-flex.align-items-center.justify-content-between
+                    // Menu
+                    .inner-menu
+                        ul.nav.mb-2
+                            li.nav-item
+                                a.nav-link(href="/") Home
+                            li.nav-item
+                                a.nav-link(href="/browse") Browse
+                            li.nav-item
+                                a.nav-link(href="/playlists") Playlists
+                            li.nav-item
+                                a.nav-link(href="/about") About
+
+                    // Search form
+                    form(action="/search" method="GET" class="d-flex")
+                        input(type="text" name="q" class="form-control me-2 search-input" placeholder="Search..." required)
+                        button(type="submit" class="btn btn-outline-success") Search
+
+
+                
             .col-md-3.text-end
                 if user
                     span.me-3 Welcome, #{user.name}!
                     a(href="/logout" class="btn btn-outline-danger") Logout
                 else
                     a(href="/login" class="btn btn-outline-primary me-2") Login
-                    a(href="/register" class="btn btn-primary") Register
+                    a(href="/register" class="btn btn-secondary") Register
             
             
