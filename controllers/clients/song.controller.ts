@@ -66,3 +66,36 @@ export const detailSong = async (req: Request, res: Response) => {
     res.redirect("/topics");
   }
 };
+// [PATCH]/songs/like/yes/:idSong
+export const likeSong = async (req: Request, res: Response) => {
+  const idSong = req.params.idSong;
+  const typeLike = req.params.typeLike;
+
+  const song = await Song.findOne({
+    _id: idSong,
+    status: "active",
+    deleted: false,
+  });
+  if (!song) {
+    return res.status(404).json({
+      code: 404,
+      message: "Không tìm thấy bài hát",
+    });
+  }
+  const newLike: number =
+    typeLike == "like" ? (song.like || 0) + 1 : (song.like || 0) - 1;
+  await Song.updateOne(
+    {
+      _id: idSong,
+    },
+    {
+      like: newLike,
+    }
+  );
+
+  res.json({
+    code: 200,
+    message: "Thành công",
+    like: newLike,
+  });
+};

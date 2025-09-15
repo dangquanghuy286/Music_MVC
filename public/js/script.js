@@ -19,3 +19,25 @@ if (aplayer) {
   });
 }
 // END AP PLAYER
+// BUTTON LIKE
+const buttonLike = document.querySelector("[button-like]");
+if (buttonLike) {
+  buttonLike.addEventListener("click", () => {
+    const idSong = buttonLike.getAttribute("button-like");
+    const isActive = buttonLike.classList.contains("active");
+
+    const typeLike = isActive ? "dislike" : "like";
+    const link = `/songs/like/${typeLike}/${idSong}`;
+
+    const option = {
+      method: "PATCH",
+    };
+    fetch(link, option)
+      .then((res) => res.json())
+      .then((data) => {
+        const span = buttonLike.querySelector("span");
+        span.innerHTML = `${data.like} thích`;
+        buttonLike.classList.toggle("active");
+      });
+  });
+}
