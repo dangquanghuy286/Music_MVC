@@ -20,9 +20,11 @@ block content
       .inner-action.inner-like(button-like=song.id)
         i.fa-regular.fa-thumbs-up
         span #{song.like} thích
-      .inner-action.inner-favorite
+      .inner-action.inner-favorite(class=song.isFavoriteSong ? "active" : "" button-favorite=song.id)
         i.fa-regular.fa-heart
         |  Bài hát yêu thích
+
+
 
     .inner-player
       img(src= song.avatar alt="Ảnh bài hát" )

@@ -41,3 +41,35 @@ if (buttonLike) {
       });
   });
 }
+// BUTTON LIKE
+
+// BUTTON FAVORITE
+const buttonFavorite = document.querySelector("[button-favorite]");
+if (buttonFavorite) {
+  buttonFavorite.addEventListener("click", () => {
+    const idSong = buttonFavorite.getAttribute("button-favorite");
+    const isActive = buttonFavorite.classList.contains("active");
+
+    const typeFavorite = isActive ? "unfavorite" : "favorite";
+    const link = `/songs/favorite/${typeFavorite}/${idSong}`;
+
+    const option = {
+      method: "PATCH",
+    };
+
+    fetch(link, option)
+      .then((res) => res.json())
+      .then((data) => {
+        // Kiểm tra response thành công
+        if (data.code === 200) {
+          buttonFavorite.classList.toggle("active");
+        } else {
+          console.error("Error:", data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+      });
+  });
+}
+// BUTTON LIKE

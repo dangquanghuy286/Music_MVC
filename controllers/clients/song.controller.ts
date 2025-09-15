@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Song from "../../models/song.model";
 import Topic from "../../models/topic.model";
 import Singer from "../../models/singer.model";
+import FavoriteSong from "../../models/favorite-song.model";
 
 //[GET]/songs
 export const listSong = async (req: Request, res: Response) => {
@@ -55,6 +56,10 @@ export const detailSong = async (req: Request, res: Response) => {
     const topicName = await Topic.findOne({ _id: song.topicId }).select(
       "description slug"
     );
+    const favoriteSong = await FavoriteSong.findOne({
+      songId: song.id,
+    });
+
     res.render("client/pages/songs/detail", {
       title: song.title,
       song: song,
@@ -98,4 +103,48 @@ export const likeSong = async (req: Request, res: Response) => {
     message: "Thành công",
     like: newLike,
   });
+};
+// [PATCH]/songs/favorite/:typeFavorite/:idSong
+export const favorite = async (req: Request, res: Response) => {
+  try {
+    const idSong = req.params.idSong;
+    const typeFavorite: string = req.params.typeFavorite;
+
+    switch (typeFavorite) {
+      case "favorite":
+        const exitFavorite = await FavoriteSong.findOne({
+          songId: idSong,
+        });
+        if (!exitFavorite) {
+          const record = new FavoriteSong({
+            // userId: "", // Thêm userId nếu cần thiết
+            songId: idSong,
+          });
+          await record.save();
+        }
+        break;
+      case "unfavorite":
+        await FavoriteSong.deleteOne({
+          songId: idSong,
+        });
+        break;
+      default:
+        return res.status(400).json({
+          code: 400,
+          message: "Invalid favorite type",
+        });
+    }
+
+    // Trả về response thành công
+    res.json({
+      code: 200,
+      message: "Success",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      code: 500,
+      message: "Server error",
+    });
+  }
 };

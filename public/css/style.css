@@ -273,7 +273,12 @@ form.d-flex {
   border-color: #dc3545;
   color: #dc3545;
 }
-
+.inner-favorite.active {
+  color: #dc3545;
+}
+.inner-favorite.active i {
+  font-weight: 900;
+}
 /* Player */
 .inner-player {
   display: flex;
