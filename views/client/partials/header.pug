@@ -12,15 +12,15 @@ header.header
                             li.nav-item
                                 a.nav-link(href="/") Home
                             li.nav-item
-                                a.nav-link(href="/browse") Browse
+                                a.nav-link(href="/topics") Topic
                             li.nav-item
                                 a.nav-link(href="/playlists") Playlists
                             li.nav-item
-                                a.nav-link(href="/about") About
+                                a.nav-link(href="/favorite-song" ) Favorite Song
 
                     // Search form
-                    form(action="/search" method="GET" class="d-flex")
-                        input(type="text" name="q" class="form-control me-2 search-input" placeholder="Search..." required)
+                    form(action="/search/result" method="GET" class="d-flex")
+                        input(type="text" name="keyword" value=keyword class="form-control me-2 search-input" placeholder="Search...")
                         button(type="submit" class="btn btn-outline-success") Search
 
 

@@ -1,23 +1,32 @@
 // AP PLAYER
-const aplayer = document.querySelector("#aplayer");
-let dataSong = aplayer.getAttribute("data-song");
-let dataSinger = aplayer.getAttribute("data-singer");
-dataSong = JSON.parse(dataSong);
-dataSinger = JSON.parse(dataSinger);
-if (aplayer) {
-  const ap = new APlayer({
-    autoplay: true,
-    container: aplayer,
-    lrcType: 3,
-    audio: {
-      name: dataSong.title,
-      artist: dataSinger.fullName,
-      url: dataSong.audio,
-      cover: dataSong.avatar,
-      lrc: "lrc.lrc",
-    },
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const aplayer = document.querySelector("#aplayer");
+  if (aplayer) {
+    try {
+      let dataSong = aplayer.getAttribute("data-song");
+      let dataSinger = aplayer.getAttribute("data-singer");
+      dataSong = JSON.parse(dataSong);
+      dataSinger = JSON.parse(dataSinger);
+
+      const ap = new APlayer({
+        autoplay: true,
+        container: aplayer,
+        lrcType: 3,
+        audio: {
+          name: dataSong.title,
+          artist: dataSinger.fullName,
+          url: dataSong.audio,
+          cover: dataSong.avatar,
+          lrc: "lrc.lrc",
+        },
+      });
+    } catch (error) {
+      console.error("Error parsing data or initializing APlayer:", error);
+    }
+  } else {
+    console.error("Element with ID 'aplayer' not found.");
+  }
+});
 // END AP PLAYER
 // BUTTON LIKE
 const buttonLike = document.querySelector("[button-like]");
@@ -44,32 +53,34 @@ if (buttonLike) {
 // BUTTON LIKE
 
 // BUTTON FAVORITE
-const buttonFavorite = document.querySelector("[button-favorite]");
-if (buttonFavorite) {
-  buttonFavorite.addEventListener("click", () => {
-    const idSong = buttonFavorite.getAttribute("button-favorite");
-    const isActive = buttonFavorite.classList.contains("active");
+const listButtonFavorite = document.querySelectorAll("[button-favorite]");
+if (listButtonFavorite.length > 0) {
+  listButtonFavorite.forEach((buttonFavorite) => {
+    buttonFavorite.addEventListener("click", () => {
+      const idSong = buttonFavorite.getAttribute("button-favorite");
+      const isActive = buttonFavorite.classList.contains("active");
 
-    const typeFavorite = isActive ? "unfavorite" : "favorite";
-    const link = `/songs/favorite/${typeFavorite}/${idSong}`;
+      const typeFavorite = isActive ? "unfavorite" : "favorite";
+      const link = `/songs/favorite/${typeFavorite}/${idSong}`;
 
-    const option = {
-      method: "PATCH",
-    };
+      const option = {
+        method: "PATCH",
+      };
 
-    fetch(link, option)
-      .then((res) => res.json())
-      .then((data) => {
-        // Kiểm tra response thành công
-        if (data.code === 200) {
-          buttonFavorite.classList.toggle("active");
-        } else {
-          console.error("Error:", data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Fetch error:", error);
-      });
+      fetch(link, option)
+        .then((res) => res.json())
+        .then((data) => {
+          // Kiểm tra response thành công
+          if (data.code === 200) {
+            buttonFavorite.classList.toggle("active");
+          } else {
+            console.error("Error:", data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
   });
 }
-// BUTTON LIKE
+// BUTTON FAVORITE
