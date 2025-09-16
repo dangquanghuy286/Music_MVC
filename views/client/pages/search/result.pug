@@ -1,0 +1,31 @@
+extends ../../layouts/default.pug
+
+block content
+    .container.my-3 
+        .box-head 
+            h2.inner-title Kết quả tìm kiếm
+            if keyword
+                p.mt-2 Bạn đang tìm kiếm: 
+                    b #{keyword}
+        
+        if songs.length
+            .grid-songs
+                each song in songs
+                    .song-item
+                        .inner-image
+                            a(href=`/songs/detail/${song.slug}`)
+                                img(src=song.avatar alt=song.title)
+                        .inner-content
+                            .inner-title
+                                a(href=`/songs/detail/${song.slug}`) #{song.title}
+                            .inner-singer 
+                                i.fa-solid.fa-microphone-lines 
+                                |  #{song.infoSinger ? song.infoSinger.fullName : "Không rõ"}
+                            .inner-like 
+                                i.fa-solid.fa-thumbs-up 
+                                |  #{song.like || 0}
+                            .inner-time 
+                                i.fa-regular.fa-clock 
+                                |  Hôm nay
+        else
+            p.text-center.mt-3 Không tìm thấy bài hát nào phù hợp.
