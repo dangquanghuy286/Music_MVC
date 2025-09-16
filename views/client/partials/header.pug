@@ -16,15 +16,19 @@ header.header
                             li.nav-item
                                 a.nav-link(href="/playlists") Playlists
                             li.nav-item
-                                a.nav-link(href="/favorite-song" ) Favorite Song
+                                a.nav-link(href="/favorite-song") Favorite Song
 
-                    // Search form
-                    form(action="/search/result" method="GET" class="d-flex")
-                        input(type="text" name="keyword" value=keyword class="form-control me-2 search-input" placeholder="Search...")
-                        button(type="submit" class="btn btn-outline-success") Search
+                    // Search form với suggest
+                    .box-search
+                        form(action="/search/result" method="GET" class="d-flex")
+                            input(type="text" name="keyword" value=keyword class="form-control me-2 search-input" placeholder="Search...")
+                            button(type="submit" class="btn btn-outline-success") Search
+                        
+                        // Suggest dropdown
+                        .inner-suggest
+                            .inner-list
+                                
 
-
-                
             .col-md-3.text-end
                 if user
                     span.me-3 Welcome, #{user.name}!
@@ -32,5 +36,3 @@ header.header
                 else
                     a(href="/login" class="btn btn-outline-primary me-2") Login
                     a(href="/register" class="btn btn-secondary") Register
-            
-            
