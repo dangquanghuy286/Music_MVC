@@ -23,6 +23,9 @@ block content
       .inner-action.inner-favorite(class=song.isFavoriteSong ? "active" : "" button-favorite=song.id)
         i.fa-regular.fa-heart
         |  Bài hát yêu thích
+      .inner-action.inner-listen
+        i.fa-solid.fa-headphones
+        span.listen-count  #{song.listen} lượt nghe
 
 
 

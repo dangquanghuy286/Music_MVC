@@ -20,6 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
           lrc: "lrc.lrc",
         },
       });
+
+      ap.on("ended", function () {
+        const link = `/songs/listen/${dataSong._id}`;
+        const option = {
+          method: "PATCH",
+        };
+        fetch(link, option)
+          .then((res) => res.json())
+          .then((data) => {
+            // Cập nhật số lượt nghe
+            const elementListen = document.querySelector(
+              `.inner-action.inner-listen span.listen-count`
+            );
+            if (elementListen) {
+              elementListen.textContent = `${data.listen} lượt nghe`;
+            }
+          });
+      });
     } catch (error) {
       console.error("Error parsing data or initializing APlayer:", error);
     }

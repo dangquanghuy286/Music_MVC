@@ -148,3 +148,56 @@ export const favorite = async (req: Request, res: Response) => {
     });
   }
 };
+// [PATCH]/songs/listen/:idSong
+export const listen = async (req: Request, res: Response) => {
+  try {
+    const idSong: string = req.params.idSong;
+
+    // Tìm bài hát và kiểm tra null
+    const song = await Song.findOne({
+      _id: idSong,
+    });
+
+    if (!song) {
+      return res.json({
+        code: 404,
+        message: "Không tìm thấy bài hát!",
+      });
+    }
+
+    const listen: number = song.listen + 1;
+
+    // Update listen count
+    await Song.updateOne(
+      {
+        _id: idSong,
+      },
+      {
+        listen: listen,
+      }
+    );
+
+    const songNew = await Song.findOne({
+      _id: idSong,
+    });
+
+    if (!songNew) {
+      return res.json({
+        code: 500,
+        message: "Lỗi khi cập nhật!",
+      });
+    }
+
+    res.json({
+      code: 200,
+      message: "Thành công!",
+      listen: songNew.listen,
+    });
+  } catch (error) {
+    console.error("Listen error:", error);
+    res.json({
+      code: 500,
+      message: "Lỗi server!",
+    });
+  }
+};
