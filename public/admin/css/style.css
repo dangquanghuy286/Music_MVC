@@ -2,11 +2,12 @@
 
 * {
   font-family: "Archivo", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Admin Panel Layout CSS */
-
-/* Header Styles */
+/* ================= Header ================= */
 .header {
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
@@ -19,10 +20,7 @@
   height: 60px;
 }
 
-.header .container-fluid {
-  height: 100%;
-}
-
+.header .container-fluid,
 .header .row {
   height: 100%;
 }
@@ -46,7 +44,7 @@
   text-decoration: none;
 }
 
-/* User info và logout buttons */
+/* User info + logout */
 .header .text-right {
   display: flex;
   align-items: center;
@@ -59,7 +57,6 @@
   font-size: 14px;
   padding: 6px 12px;
   border-radius: 4px;
-  text-decoration: none;
   transition: all 0.3s ease;
 }
 
@@ -85,10 +82,17 @@
   border-color: #bd2130;
 }
 
-/* Sidebar Styles */
+/* ================= Body Layout ================= */
+.body {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 60px; /* Để tránh header */
+}
+
+/* ================= Sidebar ================= */
 .sider {
   position: fixed;
-  top: 60px; /* Height của header */
+  top: 60px; /* dưới header */
   left: 0;
   width: 250px;
   height: calc(100vh - 60px);
@@ -96,6 +100,7 @@
   overflow-y: auto;
   z-index: 999;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .sider .inner-menu {
@@ -108,10 +113,6 @@
   margin: 0;
 }
 
-.sider li {
-  margin: 0;
-}
-
 .sider li a {
   display: block;
   padding: 12px 20px;
@@ -120,13 +121,14 @@
   font-size: 15px;
   border-left: 3px solid transparent;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .sider li a:hover {
   background-color: #495057;
   color: #fff;
   border-left-color: #007bff;
-  text-decoration: none;
 }
 
 .sider li a.active {
@@ -135,85 +137,7 @@
   border-left-color: #0056b3;
 }
 
-/* Main content area */
-.main-content {
-  margin-left: 250px; /* Width của sidebar */
-  margin-top: 60px; /* Height của header */
-  padding: 20px;
-  min-height: calc(100vh - 60px);
-  background-color: #f8f9fa;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .sider {
-    transform: translateX(-100%);
-    width: 280px;
-  }
-
-  .sider.active {
-    transform: translateX(0);
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-
-  .header .col-3,
-  .header .col-9 {
-    flex: 0 0 auto;
-  }
-
-  .header .col-3 {
-    width: 50%;
-  }
-
-  .header .col-9 {
-    width: 50%;
-  }
-}
-
-@media (max-width: 576px) {
-  .header .btn {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-
-  .header .inner-logo a {
-    font-size: 20px;
-  }
-
-  .sider li a {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
-}
-
-/* Scrollbar cho sidebar */
-.sider::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sider::-webkit-scrollbar-track {
-  background: #495057;
-}
-
-.sider::-webkit-scrollbar-thumb {
-  background: #6c757d;
-  border-radius: 3px;
-}
-
-.sider::-webkit-scrollbar-thumb:hover {
-  background: #adb5bd;
-}
-
-/* Animation cho hover effects */
-.sider li a,
-.header .btn {
-  position: relative;
-  overflow: hidden;
-}
-
+/* Hiệu ứng hover */
 .sider li a::before {
   content: "";
   position: absolute;
@@ -232,4 +156,158 @@
 
 .sider li a:hover::before {
   left: 100%;
+}
+
+/* Scrollbar */
+.sider::-webkit-scrollbar {
+  width: 6px;
+}
+.sider::-webkit-scrollbar-track {
+  background: #495057;
+}
+.sider::-webkit-scrollbar-thumb {
+  background: #6c757d;
+  border-radius: 3px;
+}
+.sider::-webkit-scrollbar-thumb:hover {
+  background: #adb5bd;
+}
+
+/* ================= Main Content ================= */
+.main-content {
+  flex: 1;
+  margin-left: 250px; /* Để tránh sidebar */
+  padding: 20px;
+  min-height: calc(100vh - 60px);
+  background-color: #f8f9fa;
+  width: calc(100% - 250px); /* Đảm bảo chiều rộng chính xác */
+  display: block; /* Đảm bảo display block */
+  position: relative;
+}
+
+h1.mb-4 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #161616;
+}
+
+/* ================= Card ================= */
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background: #14be77; /* màu Primary */
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 15px 20px;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Nút thêm mới */
+.btn-outline-success {
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+  border-color: #14be77;
+  color: #14be77;
+}
+.btn-outline-success:hover {
+  background-color: #14be77;
+  border-color: #14be77;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Table styles */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.075);
+}
+
+/* Badge styles */
+.badge-success {
+  background-color: #14be77;
+}
+
+/* Button group styles */
+.btn-group .btn {
+  margin-right: 2px;
+}
+
+.btn-group .btn:last-child {
+  margin-right: 0;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .body {
+    padding-top: 60px;
+  }
+
+  .sider {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+  .sider.active {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  .header .col-3,
+  .header .col-9 {
+    flex: 0 0 auto;
+  }
+  .header .col-3 {
+    width: 50%;
+  }
+  .header .col-9 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .header .btn {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .header .inner-logo a {
+    font-size: 20px;
+  }
+  .sider li a {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
 }
