@@ -311,3 +311,25 @@ h1.mb-4 {
     padding: 15px;
   }
 }
+/* Preview */
+.image-preview-wrapper {
+  display: none;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.image-preview-wrapper img {
+  max-width: 120px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+.remove-image {
+  background: red;
+  color: white;
+  border: none;
+  padding: 0 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}

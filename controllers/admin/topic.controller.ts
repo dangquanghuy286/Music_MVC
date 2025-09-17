@@ -10,5 +10,4 @@ export const index = async (req: Request, res: Response) => {
     title: "Topic",
     topics: topics,
   });
-  console.log(topics);
 };

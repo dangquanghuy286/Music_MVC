@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES6", // Phiên bản JS đầu ra
-    "module": "commonjs", // Dùng cho Node.js
-    "outDir": "dist", // Thư mục chứa file build
-    "rootDir": "./", // Thư mục code nguồn
-    "strict": true, // Bật kiểm tra nghiêm ngặt
-    "esModuleInterop": true, // Cho phép import default
-    "removeComments": true // Xóa comment khi build
-  }
+    "module": "commonjs", // Xuất code theo chuẩn CommonJS (dùng cho Node.js)
+    "esModuleInterop": true, // Cho phép import default từ module CommonJS
+    "allowSyntheticDefaultImports": true, // Hỗ trợ import mặc định ngay cả khi module không export default
+    "target": "es6", // Code biên dịch ra ES6
+    "moduleResolution": "node", // Cách resolve module theo Node.js
+    "sourceMap": true, // Tạo file .map để debug
+    "outDir": "./dist" // Thư mục chứa file build
+  },
+
+  "exclude": ["node_modules"] // Loại trừ thư mục node_modules
 }

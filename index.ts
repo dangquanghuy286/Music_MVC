@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
-
+import bodyParser from "body-parser";
 import clientRoutes from "./routes/clients/index.route";
 import adminRoutes from "./routes/admin/index.route";
 import { systemConfig } from "./config/config";
@@ -25,6 +25,9 @@ app.locals.prefixAdmin = systemConfig.prefixAdmin;
 clientRoutes(app);
 // Admin routes
 adminRoutes(app);
+
+// Cấu hình middleware body-parser để parse dữ liệu từ form gửi lên (POST method)
+app.use(bodyParser.urlencoded());
 
 // Cấu hình TinyMce
 app.use(
