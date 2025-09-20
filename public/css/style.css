@@ -364,7 +364,8 @@ form.d-flex {
 }
 
 /* Mô tả */
-.inner-desc {
+.inner-desc,
+.inner-lyrics {
   margin-top: 40px;
   background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid rgba(0, 123, 255, 0.1);
@@ -375,7 +376,8 @@ form.d-flex {
   overflow: hidden;
 }
 
-.inner-desc::before {
+.inner-desc::before,
+.inner-lyrics::before {
   content: "";
   position: absolute;
   top: 0;
@@ -397,7 +399,8 @@ form.d-flex {
   }
 }
 
-.inner-desc .inner-label {
+.inner-desc .inner-label,
+.inner-lyrics .inner-label {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 15px;
@@ -406,22 +409,26 @@ form.d-flex {
   align-items: center;
 }
 
-.inner-desc .inner-label::before {
+.inner-desc .inner-label::before,
+.inner-lyrics .inner-label::before {
   content: "📝";
   margin-right: 10px;
   font-size: 18px;
 }
 
-.inner-desc .inner-text {
+.inner-desc .inner-text,
+.inner-lyrics .inner-text {
   font-size: 16px;
   line-height: 1.8;
   color: #6c757d;
   text-align: justify;
   position: relative;
   padding-left: 20px;
+  white-space: pre;
 }
 
-.inner-desc .inner-text::before {
+.inner-desc .inner-text::before,
+.inner-lyrics .inner-text::before {
   content: "";
   position: absolute;
   left: 0;

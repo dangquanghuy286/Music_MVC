@@ -13,15 +13,24 @@ cloudinary.config({
 });
 
 // Hàm upload stream
-const streamUpload = (buffer: Buffer): Promise<UploadApiResponse> => {
+const streamUpload = (
+  buffer: Buffer,
+  folder?: string
+): Promise<UploadApiResponse> => {
   return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream((error, result) => {
-      if (result) {
-        resolve(result);
-      } else {
-        reject(error);
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: "auto",
+        folder: folder || "songs",
+      },
+      (error, result) => {
+        if (result) {
+          resolve(result);
+        } else {
+          reject(error);
+        }
       }
-    });
+    );
     streamifier.createReadStream(buffer).pipe(stream);
   });
 };
@@ -43,6 +52,27 @@ export const uploadSingle = async (
     req.body[req["file"].fieldname] = result;
   } catch (error) {
     console.log(error);
+  }
+  next();
+};
+// Middleware upload nhiều file
+export const uploadMulti = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  for (const key in req["files"]) {
+    req.body[key] = [];
+    const array = req["files"][key];
+
+    for (const item of array) {
+      try {
+        const result = await uploadToCloudinary(item.buffer);
+        req.body[key].push(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
   next();
 };

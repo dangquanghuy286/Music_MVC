@@ -265,6 +265,185 @@ h1.mb-4 {
   margin-right: 0;
 }
 
+/* ================= Image Preview ================= */
+.image-preview-wrapper {
+  display: none;
+  align-items: center;
+  margin-top: 10px;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+  position: relative;
+}
+
+.image-preview-wrapper.active {
+  display: flex;
+}
+
+.image-preview-wrapper img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #14be77;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-preview-wrapper img:hover {
+  transform: scale(1.05);
+}
+
+.remove-image {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-image:hover {
+  background: #c82333;
+  transform: scale(1.1);
+}
+
+/* ================= Audio Preview ================= */
+.audio-preview-wrapper {
+  display: none;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #007bff;
+  position: relative;
+}
+
+.audio-preview-wrapper.active {
+  display: flex;
+}
+
+.audio-preview-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.audio-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+
+.audio-details {
+  flex: 1;
+}
+
+.audio-filename {
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 5px 0;
+  font-size: 14px;
+}
+
+.audio-size {
+  font-size: 12px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.audio-preview-wrapper audio {
+  width: 100%;
+  border-radius: 6px;
+  outline: none;
+}
+
+.audio-preview-wrapper audio:focus {
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.remove-audio {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-audio:hover {
+  background: #c82333;
+  transform: scale(1.1);
+}
+
+/* ================= Form Enhancements ================= */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-control-file {
+  padding: 8px;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form-control-file:hover {
+  border-color: #14be77;
+  background-color: #e8f5f0;
+}
+
+.form-control-file:focus {
+  border-color: #14be77;
+  box-shadow: 0 0 0 3px rgba(20, 190, 119, 0.1);
+  outline: none;
+}
+
 /* ================= Responsive ================= */
 @media (max-width: 768px) {
   .body {
@@ -292,6 +471,16 @@ h1.mb-4 {
   .header .col-9 {
     width: 50%;
   }
+
+  .image-preview-wrapper img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  .audio-preview-info {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media (max-width: 576px) {
@@ -310,26 +499,14 @@ h1.mb-4 {
   .main-content {
     padding: 15px;
   }
-}
-/* Preview */
-.image-preview-wrapper {
-  display: none;
-  align-items: center;
-  margin-top: 10px;
-  gap: 10px;
-}
 
-.image-preview-wrapper img {
-  max-width: 120px;
-  border-radius: 6px;
-  object-fit: cover;
-  border: 1px solid #ddd;
-}
-.remove-image {
-  background: red;
-  color: white;
-  border: none;
-  padding: 0 6px;
-  border-radius: 50%;
-  cursor: pointer;
+  .image-preview-wrapper,
+  .audio-preview-wrapper {
+    padding: 10px;
+  }
+
+  .image-preview-wrapper img {
+    max-width: 100px;
+    max-height: 100px;
+  }
 }

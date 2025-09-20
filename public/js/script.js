@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
           artist: dataSinger.fullName,
           url: dataSong.audio,
           cover: dataSong.avatar,
-          lrc: "lrc.lrc",
+          lrc: dataSong.lyrics,
         },
       });
 
