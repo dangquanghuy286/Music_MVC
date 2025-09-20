@@ -1,0 +1,660 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Archivo", sans-serif;
+}
+/* Header */
+header .search-input {
+  width: 150px;
+  max-width: 100%;
+}
+.inner-menu {
+  display: flex;
+  justify-content: center;
+}
+
+form.d-flex {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Grid layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: #fff;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+/* End Card */
+
+/* Grid layout cho bài hát */
+.grid-songs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Song item */
+.song-item {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.song-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.song-item .inner-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.song-item .inner-content {
+  padding: 12px;
+}
+
+.song-item .inner-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.song-item .inner-title a {
+  text-decoration: none;
+  color: #333;
+}
+
+.song-item .inner-title a:hover {
+  color: #007bff;
+}
+
+.song-item .inner-singer,
+.song-item .inner-like,
+.song-item .inner-time {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.song-item i {
+  color: #007bff;
+}
+/* End Song Item */
+
+/* ==================== Chi tiết bài hát ==================== */
+
+/* Container chính */
+
+/* Tiêu đề */
+.box-head .inner-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.box-head .inner-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #6c5ce7);
+  margin: 15px auto;
+  border-radius: 2px;
+}
+
+/* Thông tin hành động */
+.inner-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e9f4ff 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.1);
+}
+
+.inner-action {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #495057;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 12px 18px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-action::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.inner-action:hover::before {
+  left: 100%;
+}
+
+.inner-action i {
+  margin-right: 10px;
+  color: #007bff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.inner-action:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #007bff;
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+.inner-action:hover i {
+  color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Styles đặc biệt cho từng loại action */
+.inner-time i {
+  color: #17a2b8;
+}
+.inner-singer i {
+  color: #e83e8c;
+}
+.inner-topic i {
+  color: #fd7e14;
+}
+.inner-like i {
+  color: #28a745;
+}
+.inner-favorite i {
+  color: #dc3545;
+}
+
+.inner-time:hover {
+  border-color: #17a2b8;
+  color: #17a2b8;
+}
+.inner-singer:hover {
+  border-color: #e83e8c;
+  color: #e83e8c;
+}
+.inner-topic:hover {
+  border-color: #fd7e14;
+  color: #fd7e14;
+}
+.inner-like:hover {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.inner-favorite:hover {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.inner-like.active {
+  color: #28a745;
+}
+.inner-like.active i {
+  font-weight: 900;
+}
+.inner-favorite.active {
+  color: #dc3545;
+}
+.inner-favorite.active i {
+  font-weight: 900;
+}
+/* Player */
+.inner-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+  padding: 40px 20px;
+  background: radial-gradient(circle at center, #f8f9ff 0%, #e3f2fd 100%);
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-player::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, rgba(0, 123, 255, 0.03), transparent);
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.inner-player img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: spin 15s linear infinite;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 0 12px rgba(0, 123, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.inner-player img:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 0 12px rgba(0, 123, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.inner-player audio {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Mô tả */
+.inner-desc,
+.inner-lyrics {
+  margin-top: 40px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-desc::before,
+.inner-lyrics::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #6c5ce7, #007bff);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+}
+
+.inner-desc .inner-label,
+.inner-lyrics .inner-label {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+}
+
+.inner-desc .inner-label::before,
+.inner-lyrics .inner-label::before {
+  content: "📝";
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.inner-desc .inner-text,
+.inner-lyrics .inner-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6c757d;
+  text-align: justify;
+  position: relative;
+  padding-left: 20px;
+  white-space: pre;
+}
+
+.inner-desc .inner-text::before,
+.inner-lyrics .inner-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #007bff, #6c5ce7);
+  border-radius: 2px;
+}
+
+/* Nút quay lại */
+.btn.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 30px;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+.btn.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inner-actions {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .inner-player img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .inner-player {
+    margin: 30px 0;
+    padding: 30px 15px;
+  }
+
+  .box-head .inner-title {
+    font-size: 26px;
+  }
+
+  .inner-desc {
+    padding: 20px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner-action {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .inner-player img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .inner-player audio {
+    max-width: 100%;
+  }
+}
+
+/* Container search */
+.box-search {
+  position: relative;
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* Search form */
+.box-search form {
+  width: 100%;
+}
+
+.box-search .search-input {
+  width: 100%;
+}
+
+/* Suggest dropdown */
+.box-search .inner-suggest {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2px;
+}
+
+.box-search .inner-suggest.show {
+  display: block;
+}
+
+/* List container */
+.box-search .inner-suggest .inner-list {
+  padding: 0;
+  margin: 0;
+}
+
+/* Each item */
+.box-search .inner-suggest .inner-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.box-search .inner-suggest .inner-item:hover {
+  background: #f5f5f5;
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.box-search .inner-suggest .inner-item:last-child {
+  border-bottom: 0;
+}
+
+/* Image */
+.box-search .inner-suggest .inner-item .inner-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.box-search .inner-suggest .inner-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.box-search .inner-suggest .inner-item:hover .inner-image img {
+  transform: scale(1.05);
+}
+
+/* Info */
+.box-search .inner-suggest .inner-item .inner-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+/* Song title */
+.box-search .inner-suggest .inner-item .inner-info .inner-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #400070;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+/* Singer name */
+.box-search .inner-suggest .inner-item .inner-info .inner-singer {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.box-search .inner-suggest .inner-item .inner-info .inner-singer i {
+  font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .box-search {
+    margin-left: 10px;
+  }
+
+  .box-search .inner-suggest .inner-item {
+    padding: 8px;
+  }
+
+  .box-search .inner-suggest .inner-item .inner-image {
+    width: 35px;
+    height: 35px;
+  }
+}

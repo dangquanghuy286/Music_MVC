@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+
+block content
+  .container.my-4
+    .row
+      .col-12
+        .box-head
+          h2.inner-title #{song.title}
+
+    .inner-actions
+      .inner-action.inner-time
+        i.fa-regular.fa-clock
+        |  20/10/2023
+      .inner-action.inner-singer
+        i.fa-solid.fa-microphone-lines
+        |  #{infoSinger.fullName}
+      .inner-action.inner-topic
+        i.fa-solid.fa-music
+        |  #{topicName.description}
+      .inner-action.inner-like(button-like=song.id)
+        i.fa-regular.fa-thumbs-up
+        span #{song.like} thích
+      .inner-action.inner-favorite(class=song.isFavoriteSong ? "active" : "" button-favorite=song.id)
+        i.fa-regular.fa-heart
+        |  Bài hát yêu thích
+      .inner-action.inner-listen
+        i.fa-solid.fa-headphones
+        span.listen-count  #{song.listen} lượt nghe
+
+
+
+    .inner-player
+      img(src= song.avatar alt="Ảnh bài hát" )
+  
+      div(id="aplayer" data-song=song data-singer=infoSinger)  
+    .inner-desc
+      .inner-label Mô tả
+      .inner-text !{song.description}
+    .inner-lyrics
+      .inner-label Lời bài hát
+      .inner-text !{song.lyrics}
+
+    .row.mt-4
+      .col-12
+        a.btn.btn-primary(href="/songs") ← Quay lại danh sách

@@ -1,0 +1,23 @@
+extends ../../layouts/default.pug
+block content
+    .container.my-3 
+        .box-head 
+            h2.inner-title Bài hát
+        .grid-songs
+            each song in songs
+                .song-item
+                    .inner-image
+                        a(href=`/songs/detail/${song.slug}`)
+                            img(src=song.avatar)
+                    .inner-content
+                        .inner-title
+                            a(href=`/songs/detail/${song.slug}`) #{song.title}
+                        .inner-singer 
+                            i(class="fa-solid fa-microphone-lines") 
+                            |  #{song.infoSinger.fullName}
+                        .inner-like 
+                            i(class="fa-solid fa-thumbs-up") 
+                            |  #{song.like}
+                        .inner-time 
+                            i(class="fa-regular fa-clock") 
+                            |  Hôm nay

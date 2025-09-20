@@ -1,0 +1,66 @@
+extends ../../layouts/default.pug
+
+block main
+  h1.mb-4 #{title}
+  
+  .card.mb-3
+    .card-header Danh sách
+    .card-body
+      .row
+        .col-8
+          
+        .col-4.text-right
+          a.btn.btn-outline-success(
+            href=`/${prefixAdmin}/songs/create`
+          ) Thêm mới
+    
+      .table-responsive.mt-4
+        table.table.table-hover.table-sm
+          thead
+            tr
+              th STT
+              th Hình ảnh
+              th Tiêu đề
+              th Ca sỹ
+              th Trạng thái
+              th Hành động
+          tbody
+            if songs.length
+              each song, index in songs
+                tr
+                  td #{index + 1}
+                  td
+                    img(
+                      src=song.avatar
+                      alt=song.title
+                      style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;"
+                    )
+                  td
+                    strong #{song.title}
+                  td
+                    strong #{song.infoSinger.fullName}
+                  td
+                    if song.status === "active"
+                      span.badge.badge-success Hoạt động
+                    else
+                      span.badge.badge-secondary Không hoạt động
+                  td
+                    .btn-group(role="group")
+                      a.btn.btn-outline-info.btn-sm(
+                        href=`/${prefixAdmin}/songs/detail/${song._id}`
+                        title="Chi tiết"
+                      ) Chi tiết
+                      a.btn.btn-outline-warning.btn-sm(
+                        href=`/${prefixAdmin}/songs/edit/${song._id}`
+                        title="Sửa"
+                      ) Sửa
+                      button.btn.btn-outline-danger.btn-sm(
+                        type="button"
+                        title="Xóa"
+                        data-toggle="modal"
+                        data-target="#deleteModal"
+                        data-id=song._id
+                      ) Xóa
+            else
+              tr
+                td.text-center(colspan="5") Chưa có song nào

@@ -1,0 +1,75 @@
+extends ../../layouts/default.pug
+
+block main
+  h1.mb-4 Thêm mới bài hát
+  
+  form#form-create-song(action=`/admin/songs/create` method="POST" enctype="multipart/form-data")
+    
+    //- Tiêu đề bài hát
+    .form-group
+      label(for="title") Tên bài hát
+      input#title.form-control(type="text" name="title" required)
+    
+    //- Ca sĩ / nghệ sĩ
+    .form-group
+      label(for="singer") Ca sĩ / Nghệ sĩ
+      select#singer.form-control(name="singerId")
+        option(value="") --Chọn Ca sĩ / Nghệ sĩ--
+        each item in singers
+          option(value=item.id) #{item.fullName}
+    
+    //- Thể loại (topic/category)
+    .form-group
+      label(for="topic") Thể loại
+      select#topic.form-control(name="topicId")
+        option(value="") --Thể loại--
+        each item in topics
+          option(value=item.id) #{item.title}
+    
+    //- Lời mô tả / giới thiệu
+    .form-group
+      label(for="description") Mô tả
+      textarea#description.form-control(name="description" rows="4" textarea-mce)
+    //- Lời bài hát
+    .form-group
+      label(for="lyrics") Lời bài hát
+      textarea#lyrics.form-control(name="lyrics" rows="4" textarea-mce)
+    
+    //- File nhạc upload
+    .form-group(upload-audio)
+      label(for="audio") File nhạc
+      input#audio.form-control-file(type="file" name="audio" accept="audio/*" upload-audio-input)
+      
+      .audio-preview-wrapper
+        .audio-preview-info
+          .audio-icon
+            | ♫
+          .audio-details
+            p.audio-filename
+            p.audio-size
+        audio.audio-preview(controls upload-audio-preview)
+        button.remove-audio(type="button" remove-audio) ×
+    
+    //- Ảnh bìa (thumbnail)
+    .form-group(upload-image)
+      label(for="avatar") Ảnh bìa
+      input#avatar.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)
+      
+      .image-preview-wrapper
+        img.image-preview(upload-image-preview src="" alt="Ảnh xem trước")
+        button.remove-image(type="button" remove-image) ×
+    
+    //- Trạng thái
+    .form-group
+      label Trạng thái
+      div
+        label.mr-3
+          input#statusActive.form-check-input(type="radio" name="status" value="active" checked)
+          | Hoạt động
+        label
+          input#statusInActive.form-check-input(type="radio" name="status" value="inactive")
+          | Dừng hoạt động
+    
+    button.btn.btn-primary(type="submit") Thêm bài hát
+
+  script(src="/admin/js/script.js")
