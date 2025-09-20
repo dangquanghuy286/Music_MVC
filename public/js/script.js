@@ -8,6 +8,23 @@ document.addEventListener("DOMContentLoaded", () => {
       dataSong = JSON.parse(dataSong);
       dataSinger = JSON.parse(dataSinger);
 
+      // Lấy lyric từ DB
+      let rawLyrics = dataSong.lyrics;
+
+      // Strip HTML (ví dụ thẻ <p>, <br>, &nbsp;)
+      let plainLyrics = rawLyrics
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/<\/?p>/gi, "")
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/&lt;/gi, "<")
+        .replace(/&gt;/gi, ">")
+        .trim();
+      plainLyrics = plainLyrics
+        .split("\n")
+        .filter((line) => line.trim())
+        .join("\n");
+
       const ap = new APlayer({
         autoplay: true,
         container: aplayer,
@@ -17,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           artist: dataSinger.fullName,
           url: dataSong.audio,
           cover: dataSong.avatar,
-          lrc: dataSong.lyrics,
+          lrc: plainLyrics,
         },
       });
 

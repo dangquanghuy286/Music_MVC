@@ -28,6 +28,27 @@ export const index = async (req: Request, res: Response) => {
     songs: songsWithSinger,
   });
 };
+//[GET]/admin/songs/edit/:id
+export const edit = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const songs = await Song.findOne({
+    _id: id,
+    deleted: false,
+  });
+  const topics = await Topic.find({
+    deleted: false,
+  }).select("title");
+
+  const singers = await Singer.find({
+    deleted: false,
+  }).select("fullName");
+  res.render("admin/pages/songs/edit", {
+    title: "Edit Songs",
+    songs,
+    topics,
+    singers,
+  });
+};
 //[GET]/admin/songs/create
 export const create = async (req: Request, res: Response) => {
   const topics = await Topic.find({
@@ -67,6 +88,33 @@ export const createPost = async (req: Request, res: Response) => {
   };
   const songs = new Song(dataSong);
   await songs.save();
+
+  res.redirect(`/${systemConfig.prefixAdmin}/songs`);
+};
+// [PATCH]/songs/edit/:id
+export const editPatch = async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const dataSong = {
+    title: req.body.title,
+    singerId: req.body.singerId,
+    topicId: req.body.topicId,
+    description: req.body.description,
+    status: req.body.status,
+    lyrics: req.body.lyrics,
+  };
+  if (req.body.avatar) {
+    dataSong["avatar"] = req.body.avatar[0];
+  }
+  if (req.body.audio) {
+    dataSong["audio"] = req.body.audio[0];
+  }
+  await Song.updateOne(
+    {
+      _id: id,
+    },
+    dataSong
+  );
 
   res.redirect(`/${systemConfig.prefixAdmin}/songs`);
 };

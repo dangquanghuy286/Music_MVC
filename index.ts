@@ -6,13 +6,14 @@ import clientRoutes from "./routes/clients/index.route";
 import adminRoutes from "./routes/admin/index.route";
 import { systemConfig } from "./config/config";
 import path from "path";
-
+import methodOverride from "method-override";
 dotenv.config();
 database.connectDB();
 
 const app: Express = express();
 const port: number | string = process.env.PORT || 3000;
 
+app.use(methodOverride("_method"));
 app.use(express.static("public"));
 
 app.set("views", "./views");
